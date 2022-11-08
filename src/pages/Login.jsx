@@ -11,6 +11,7 @@ import BackArrow from "../assets/backArrow.svg";
 import Google from "../assets/google.svg";
 import Hamburger from "../assets/hamburger.svg";
 import Close from "../assets/close.svg";
+import Apple from "../assets/apple.svg";
 // misc
 import { fadeInPageTransition, fadeOutPageTransition } from "../animations/pageTransition";
 
@@ -22,9 +23,11 @@ function Login() {
   const navSwitchWrapper = useRef();
   const navbar = useRef();
   const content = useRef();
+  const spacer = useRef();
 
   useLayoutEffect(() => {
     fadeInPageTransition(content.current);
+    spacer.current.style.height = navbar.current.clientHeight + "px";
   }, []);
 
   const navSwitchHandler = () => {
@@ -68,10 +71,16 @@ function Login() {
         <div onClick={navigateBack} className={nav.nav__btn}>
           <Google className={nav.nav__svg} />
         </div>
+        <div onClick={navigateBack} className={nav.nav__btn}>
+          <Apple className={nav.nav__svg} />
+        </div>
       </nav>
       <div className={`${layout.flex__col__layout} content`}>
-        <form className={`${layout.flex__col__inner__large}`}>
-          <header className={header.header__large}>Let's sign you in</header>
+        <form className={`${form.form} ${layout.flex__col__inner__large}`}>
+          <header className={layout.flex__col__inner__small}>
+            <span className={header.header__large}>Let's sign you in</span>
+            <p className={header.subheading}>Make use of other sign in options by pressing menu.</p>
+          </header>
           <div className={`${layout.flex__col__inner__medium}`}>
             <header className={header.header__medium}>Your email</header>
             <input
@@ -81,7 +90,7 @@ function Login() {
               name="email"
               // value={email}
               // onChange={onChange}
-              placeholder="type here"
+              placeholder="type email here"
             />
           </div>
           <div className={`${layout.flex__col__inner__medium}`}>
@@ -93,7 +102,7 @@ function Login() {
               name="email"
               // value={email}
               // onChange={onChange}
-              placeholder="type here"
+              placeholder="type password here"
             />
           </div>
           <div className={`${layout.flex__col__inner__medium}`}>
@@ -101,6 +110,7 @@ function Login() {
             <button className={btns.secondary__btn}>Create account</button>
           </div>
         </form>
+        <div className="spacer" ref={spacer}></div>
       </div>
     </div>
   );

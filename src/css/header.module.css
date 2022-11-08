@@ -8,3 +8,7 @@
 .header__medium {
   font-size: 1.25rem;
 }
+.subheading {
+  color: var(--text-secondary-color);
+  margin: 0;
+}

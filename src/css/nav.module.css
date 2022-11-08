@@ -2,12 +2,12 @@
   position: fixed;
   width: 100%;
   bottom: 0;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   display: flex;
   gap: 1rem;
   justify-content: center;
   background: var(--nav-container-bg-color);
-  backdrop-filter: blur(50px);
+  backdrop-filter: blur(1rem);
   z-index: 100;
   opacity: 0;
   transform: translateY(100%);
@@ -24,6 +24,9 @@
   cursor: pointer;
   transition: 0.3s ease-out;
 }
+.nav__svg {
+  display: block;
+}
 .nav__svg path {
   fill: var(--text-primary-color);
 }
@@ -31,7 +34,7 @@
   position: fixed;
   bottom: 0;
   right: 5vw;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   z-index: 100;
   transition: 0.3s ease-out;
 }
@@ -60,4 +63,9 @@
 .showNavbar {
   opacity: 1;
   transform: translateY(0%);
+}
+@media (max-width: 400px) {
+  .nav__switch__wrapper {
+    right: 7vw;
+  }
 }
