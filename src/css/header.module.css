@@ -1,0 +1,10 @@
+.header__large,
+.header__medium {
+  font-family: "PPPangramSansRounded-Semibold";
+}
+.header__large {
+  font-size: 1.5rem;
+}
+.header__medium {
+  font-size: 1.25rem;
+}

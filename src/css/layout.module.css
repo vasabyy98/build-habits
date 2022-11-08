@@ -3,5 +3,18 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.flex__col__inner__medium,
+.flex__col__inner__large {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+.flex__col__inner__large {
+  gap: var(--gap-large);
+}
+.flex__col__inner__medium {
   gap: var(--gap-medium);
 }

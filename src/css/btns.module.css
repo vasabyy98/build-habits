@@ -1,0 +1,12 @@
+.primary__btn,
+.secondary__btn {
+  padding: 1.25rem 0;
+  border-radius: 1rem;
+}
+.primary__btn {
+  background: var(--text-primary-color);
+  color: var(--bg-color);
+}
+.secondary__btn {
+  background: var(--container-primary-color);
+}

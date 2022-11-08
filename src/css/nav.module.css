@@ -1,0 +1,63 @@
+.fixed__nav {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  padding: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  background: var(--nav-container-bg-color);
+  backdrop-filter: blur(50px);
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: 0.3s ease-out;
+}
+.nav__btn:active,
+.nav__switch:active {
+  scale: 0.95;
+}
+.nav__btn {
+  padding: 1rem;
+  background: var(--nav-item-bg-color);
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+}
+.nav__svg path {
+  fill: var(--text-primary-color);
+}
+.nav__switch__wrapper {
+  position: fixed;
+  bottom: 0;
+  right: 5vw;
+  padding: 1rem 0;
+  z-index: 100;
+  transition: 0.3s ease-out;
+}
+.nav__switch {
+  padding: 1rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(50px);
+  background: var(--accent-color);
+  cursor: pointer;
+  transition: 0.3s ease-out;
+}
+.nav__svg__close {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 0.3s ease-out;
+}
+.nav__switch path {
+  fill: var(--bg-color);
+}
+.hideSwitch {
+  transform: translateY(-100%);
+}
+.showNavbar {
+  opacity: 1;
+  transform: translateY(0%);
+}
