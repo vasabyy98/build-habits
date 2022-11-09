@@ -69,3 +69,13 @@
     right: 7vw;
   }
 }
+@media only screen and (hover: hover) and (pointer: fine) and (min-width: 500px) {
+  .fixed__nav {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+  .nav__switch {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}

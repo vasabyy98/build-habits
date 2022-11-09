@@ -9,6 +9,37 @@
   font-size: 1.25rem;
 }
 .subheading {
+  position: relative;
   color: var(--text-secondary-color);
   margin: 0;
+  max-width: 30ch;
+}
+.desktop {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@media only screen and (hover: none) and (pointer: coarse) {
+  .mobile {
+    opacity: 1;
+  }
+  .desktop {
+    opacity: 0;
+  }
+}
+@media only screen and (hover: hover) and (pointer: fine) {
+  .mobile {
+    opacity: 0;
+  }
+  .desktop {
+    opacity: 1;
+  }
+}
+@media only screen and (hover: hover) and (pointer: fine) and (max-width: 500px) {
+  .mobile {
+    opacity: 1;
+  }
+  .desktop {
+    opacity: 0;
+  }
 }

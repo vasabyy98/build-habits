@@ -51,6 +51,10 @@ button {
 button:active {
   scale: 0.95;
 }
+a {
+  all: unset;
+  cursor: pointer;
+}
 .container {
   position: relative;
   min-height: 100vh;
@@ -104,9 +108,19 @@ button:active {
     display: block;
   }
 }
+@media (min-width: 700px) {
+  .content {
+    max-width: 500px;
+  }
+}
 @media (min-width: 1200px) {
   .index__subheading {
     max-width: 40ch;
+  }
+}
+@media only screen and (hover: none) and (pointer: coarse) and (orientation: landscape) {
+  .content {
+    padding: 7vw;
   }
 }
 @media only screen and (hover: none) and (pointer: coarse) {
