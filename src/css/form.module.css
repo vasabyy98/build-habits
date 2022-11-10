@@ -7,8 +7,3 @@
 .form__input:focus {
   box-shadow: 0px 0px 20px rgba(212, 201, 81, 0.5);
 }
-@media (max-width: 400px) {
-  .form {
-    padding-top: 15vw;
-  }
-}

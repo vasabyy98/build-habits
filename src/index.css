@@ -98,14 +98,10 @@ a {
 }
 .spacer {
   width: 100%;
-  display: none;
 }
 @media (max-width: 400px) {
   .content {
     padding: 0 7vw;
-  }
-  .spacer {
-    display: block;
   }
 }
 @media (min-width: 700px) {

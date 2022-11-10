@@ -11,7 +11,6 @@ import BackArrow from "../assets/backArrow.svg";
 import Google from "../assets/google.svg";
 import Hamburger from "../assets/hamburger.svg";
 import Close from "../assets/close.svg";
-import Apple from "../assets/apple.svg";
 // misc
 import { fadeInPageTransition, fadeOutPageTransition } from "../animations/pageTransition";
 // auth
@@ -30,16 +29,19 @@ function Login() {
   const navSwitchWrapper = useRef();
   const navbar = useRef();
   const content = useRef();
-  const spacer = useRef();
+  const spacerTop = useRef();
+  const spacerBottom = useRef();
 
   useEffect(() => {
-    // if (user) navigate("/");
-    console.log(user);
+    if (user) {
+      navigateOut("/home");
+    }
   }, [user]);
 
   useLayoutEffect(() => {
     fadeInPageTransition(content.current);
-    spacer.current.style.height = navbar.current.clientHeight + "px";
+    spacerTop.current.style.height = navbar.current.clientHeight / 2 + "px";
+    spacerBottom.current.style.height = navbar.current.clientHeight + "px";
   }, []);
 
   const navSwitchHandler = () => {
@@ -60,11 +62,10 @@ function Login() {
     }
   };
 
-  const navigateBack = () => {
-    const navigateFunc = function () {
-      navigate("/");
+  const navigateOut = (url) => {
+    const navigateFunc = () => {
+      navigate(url);
     };
-
     fadeOutPageTransition(content.current, navigateFunc);
   };
 
@@ -87,17 +88,15 @@ function Login() {
         </div>
       </div>
       <nav ref={navbar} className={nav.fixed__nav}>
-        <div onClick={navigateBack} className={nav.nav__btn}>
+        <div onClick={() => navigateOut("/")} className={nav.nav__btn}>
           <BackArrow className={nav.nav__svg} />
         </div>
         <div onClick={signInWithGoogle} className={nav.nav__btn}>
           <Google className={nav.nav__svg} />
         </div>
-        <div onClick={navigateBack} className={nav.nav__btn}>
-          <Apple className={nav.nav__svg} />
-        </div>
       </nav>
       <div className={`${layout.flex__col__layout} content`}>
+        <div className="spacerTop" ref={spacerTop}></div>
         <form className={`${form.form} ${layout.flex__col__inner__large}`}>
           <header className={layout.flex__col__inner__small}>
             <span className={header.header__large}>Let's sign you in</span>
@@ -145,7 +144,7 @@ function Login() {
             </button>
           </div>
         </form>
-        <div className="spacer" ref={spacer}></div>
+        <div className="spacerBottom" ref={spacerBottom}></div>
       </div>
     </div>
   );

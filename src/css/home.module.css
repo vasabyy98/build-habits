@@ -1,0 +1,51 @@
+.home__ui {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: min-content min-content;
+  gap: var(--gap-large);
+}
+.home__nav {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.nav__item {
+  position: relative;
+}
+.nav__item__radio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.nav__item span {
+  display: block;
+  text-align: center;
+}
+.nav__item__active__circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--accent-color) !important;
+  transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.nav__item__circle {
+  margin-bottom: var(--gap-small);
+  color: var(--accent-color) !important;
+  opacity: 0;
+  user-select: none;
+  transition: 0.3s ease-out;
+}
+.nav__item__label {
+  display: block;
+  color: #999999;
+  user-select: none;
+  transition: 0.3s ease-out;
+}
+.nav__item__active .nav__item__label {
+  color: var(--text-primary-color);
+}
