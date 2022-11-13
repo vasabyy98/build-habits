@@ -99,11 +99,7 @@ a {
 .spacer {
   width: 100%;
 }
-@media (max-width: 400px) {
-  .content {
-    padding: 0 7vw;
-  }
-}
+
 @media (min-width: 700px) {
   .content {
     max-width: 500px;

@@ -7,3 +7,39 @@
 .form__input:focus {
   box-shadow: 0px 0px 20px rgba(212, 201, 81, 0.5);
 }
+.checkbox__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: stretch;
+  gap: var(--gap-small);
+}
+.checkbox__item {
+  position: relative;
+  flex: 1 1 0px;
+}
+.checkbox__name {
+  display: block;
+  text-transform: uppercase;
+  padding: 1.25rem 0;
+  color: var(--text-primary-color);
+  background: var(--container-secondary-color);
+  border-radius: 1rem;
+  text-align: center;
+  transition: 0.3s ease-out;
+}
+.checkbox__input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.checkbox__input:checked + .checkbox__name {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+}
+@media (max-width: 400px) {
+  .checkbox__wrapper {
+    gap: 5px;
+  }
+}

@@ -1,6 +1,7 @@
 .primary__btn,
-.secondary__btn {
-  padding: 1.25rem 0;
+.secondary__btn,
+.date__input__btn {
+  padding: 1.25rem 0 !important;
   border-radius: 1rem;
   text-align: center;
 }
@@ -10,4 +11,8 @@
 }
 .secondary__btn {
   background: var(--container-primary-color);
+}
+.date__input__btn {
+  background: var(--container-secondary-color);
+  cursor: pointer;
 }

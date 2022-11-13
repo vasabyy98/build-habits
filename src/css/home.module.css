@@ -14,6 +14,7 @@
 }
 .nav__item {
   position: relative;
+  cursor: pointer;
 }
 .nav__item__radio {
   position: absolute;
