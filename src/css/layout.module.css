@@ -22,3 +22,19 @@
 .flex__col__inner__small {
   gap: var(--gap-small);
 }
+.grid__row__layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--gap-small);
+}
+.flex__row__layout {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--gap-small);
+}
+.grid__row__layout input {
+  min-width: 0%;
+  flex: 1 1 0px;
+}

@@ -9,6 +9,9 @@
 html {
   font-size: 20px;
 }
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: "PPPangramSansRounded-Medium", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -16,7 +19,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  box-sizing: border-box;
   background-color: var(--bg-color);
 }
 :root {
@@ -28,6 +30,7 @@ body {
   --completed-color: #51d466;
   --container-primary-color: #1a1c1e;
   --container-secondary-color: #131416;
+  --selected-input-shadow-color: #d3c85080;
   /* nav colors */
   --nav-container-bg-color: #0d0d0d99;
   --nav-item-bg-color: #2b2d31;
@@ -41,12 +44,26 @@ form {
 }
 input {
   all: unset;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 button {
   all: unset;
   text-align: center;
   cursor: pointer;
   transition: scale 0.3s ease-out;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
 }
 button:active {
   scale: 0.95;
@@ -55,6 +72,7 @@ a {
   all: unset;
   cursor: pointer;
 }
+
 .container {
   position: relative;
   min-height: 100vh;

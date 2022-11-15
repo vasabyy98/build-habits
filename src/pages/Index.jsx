@@ -5,7 +5,7 @@ import CircularText from "../assets/circular-text-white.svg";
 // css
 import layout from "../css/layout.module.css";
 // misc
-import { fadeInPageTransition, fadeOutPageTransition } from "../animations/pageTransition";
+import { fadeInPageTransition, fadeOutPageTransition } from "../utils/animations/pageTransition";
 
 function Index() {
   const navigate = useNavigate();

@@ -1,6 +1,7 @@
 .primary__btn,
 .secondary__btn,
-.date__input__btn {
+.date__input__btn,
+.none__btn {
   padding: 1.25rem 0 !important;
   border-radius: 1rem;
   text-align: center;
@@ -15,4 +16,17 @@
 .date__input__btn {
   background: var(--container-secondary-color);
   cursor: pointer;
+}
+.none__btn {
+  background: var(--container-secondary-color);
+  transition: 0.3s ease-out;
+}
+.none__btn__active {
+  background: var(--accent-color);
+  color: var(--bg-color);
+}
+/* date component styles */
+.active__date__input {
+  background: var(--accent-color);
+  color: var(--bg-color);
 }

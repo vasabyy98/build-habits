@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import CreateHabit from "./pages/CreateHabit";
 
 function App() {
+  document.addEventListener("touchstart", function () {}, true);
   return (
     <Router>
       <Routes>

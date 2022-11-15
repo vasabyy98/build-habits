@@ -11,7 +11,7 @@
   z-index: 100;
   opacity: 0;
   transform: translateY(100%);
-  transition: 0.3s ease-out;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
 .nav__btn:active,
 .nav__switch:active {
@@ -27,7 +27,8 @@
 .nav__svg {
   display: block;
 }
-.nav__svg path {
+.nav__svg path,
+.nav__svg circle {
   fill: var(--text-primary-color);
 }
 .nav__switch__wrapper {

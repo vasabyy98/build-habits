@@ -12,7 +12,7 @@ import Google from "../assets/google.svg";
 import Hamburger from "../assets/hamburger.svg";
 import Close from "../assets/close.svg";
 // misc
-import { fadeInPageTransition, fadeOutPageTransition } from "../animations/pageTransition";
+import { fadeInPageTransition, fadeOutPageTransition } from "../utils/animations/pageTransition";
 // auth
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, registerWithEmailAndPassword, signInWithGoogle } from "../firebase";

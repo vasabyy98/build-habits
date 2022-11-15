@@ -10,8 +10,10 @@ import SignOut from "../assets/signout.svg";
 import Hamburger from "../assets/hamburger.svg";
 import Close from "../assets/close.svg";
 import Add from "../assets/add.svg";
+import ThemeSwitch from "../assets/themeSwitch.svg";
 // misc
-import { fadeInPageTransition, fadeOutPageTransition } from "../animations/pageTransition";
+import { fadeInPageTransition, fadeOutPageTransition } from "../utils/animations/pageTransition";
+import { switchTheme } from "../utils/themeSwitcher/themeSwitcher";
 // auth
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../firebase";
@@ -144,6 +146,9 @@ function Home() {
         </div>
         <div onClick={() => navigateOut("/create-habit")} className={nav.nav__btn}>
           <Add className={nav.nav__svg} />
+        </div>
+        <div onClick={() => switchTheme()} className={nav.nav__btn}>
+          <ThemeSwitch className={nav.nav__svg} />
         </div>
       </nav>
       <div className="content">
