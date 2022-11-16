@@ -184,6 +184,7 @@ function CreateHabit() {
   const navigate = useNavigate();
 
   const [habitName, setHabitName] = useState("");
+
   const [weekdays, setWeekdays] = useState([
     { day: "Monday", domText: "m" },
     { day: "Tuesday", domText: "t" },
@@ -295,20 +296,48 @@ function CreateHabit() {
     }
   };
 
-  const createHabit = async () => {
-    await addDoc(habitsCollectionRef, {
-      habitName,
-    }).then(() => {
-      navigateOut("/home");
-    });
+  const habitNameContainerRef = useRef();
+  const frequencyContainerRef = useRef();
+  let canProceed = false;
+
+  const checkEmptyInputs = () => {
+    if (habitName === "" && frequency.length === 0) {
+      habitNameContainerRef.current.scrollIntoView();
+    } else if (frequency.length === 0) {
+      frequencyContainerRef.current.scrollIntoView();
+    } else if (habitName !== "" && frequency.length !== 0) {
+      canProceed = true;
+    }
   };
 
-  const onLogout = (url) => {
-    const navigateFunc = () => {
-      navigate(url);
-      logout();
+  const createHabit = async () => {
+    checkEmptyInputs();
+
+    let habitTrack;
+
+    if (trackType.value === "none") {
+      habitTrack = "unset";
+    } else if (trackType.value === "time") {
+      habitTrack = trackTime;
+    } else if (trackType.value === "custom") {
+      habitTrack = customTrack;
+    }
+
+    const data = {
+      habitName,
+      frequency,
+      startDate: startDate.$d,
+      endDate: noneBtnIsActive ? "unset" : endDate.$d,
+      habitTrack,
     };
-    fadeOutPageTransition(content.current, navigateFunc);
+
+    if (canProceed) {
+      await addDoc(habitsCollectionRef, {
+        data,
+      }).then(() => {
+        navigateOut("/home");
+      });
+    }
   };
 
   const navigateOut = (url) => {
@@ -339,7 +368,7 @@ function CreateHabit() {
             <p className={header.subheading}>Fill up the form below.</p>
           </header>
           {/* habit name */}
-          <div className={`${layout.flex__col__inner__medium}`}>
+          <div ref={habitNameContainerRef} className={`${layout.flex__col__inner__medium}`}>
             <header className={header.header__medium}>Habit name</header>
             <input
               type="text"
@@ -351,7 +380,7 @@ function CreateHabit() {
             />
           </div>
           {/* frquency */}
-          <div className={`${layout.flex__col__inner__medium}`}>
+          <div ref={frequencyContainerRef} className={`${layout.flex__col__inner__medium}`}>
             <header className={layout.flex__col__inner__small}>
               <span className={header.header__medium}>Frequency</span>
               <p className={header.subheading}>How many days per week?</p>

@@ -30,3 +30,12 @@
   background: var(--accent-color);
   color: var(--bg-color);
 }
+.entry__link__btn {
+  padding: 1.5rem 1rem;
+  border-radius: 1rem;
+  text-align: left;
+  font-family: "PPPangramSansRounded-Semibold";
+  font-size: 1.1rem;
+  background: var(--container-secondary-color);
+  text-transform: capitalize;
+}

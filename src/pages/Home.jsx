@@ -1,10 +1,11 @@
 import React, { useRef, useState, useLayoutEffect, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 // css
 import layout from "../css/layout.module.css";
 import header from "../css/header.module.css";
 import nav from "../css/nav.module.css";
 import home from "../css/home.module.css";
+import btns from "../css/btns.module.css";
 // assets
 import SignOut from "../assets/signout.svg";
 import Hamburger from "../assets/hamburger.svg";
@@ -12,7 +13,12 @@ import Close from "../assets/close.svg";
 import Add from "../assets/add.svg";
 import ThemeSwitch from "../assets/themeSwitch.svg";
 // misc
-import { fadeInPageTransition, fadeOutPageTransition } from "../utils/animations/pageTransition";
+import {
+  fadeInPageTransition,
+  fadeOutPageTransition,
+  fadeOutTransition,
+  fadeInTransition,
+} from "../utils/animations/pageTransition";
 import { switchTheme } from "../utils/themeSwitcher/themeSwitcher";
 // auth
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -27,26 +33,10 @@ function Home() {
   const [userName, setUserName] = useState(null);
   const [habits, setHabits] = useState([]);
 
-  const navigate = useNavigate();
-  const [switchState, setSwitchState] = useState(false);
-
-  const navSwitch = useRef();
-  const navSwitchWrapper = useRef();
-  const navbar = useRef();
   const content = useRef();
   const spacerTop = useRef();
   const spacerBottom = useRef();
-
   const homeNavWrapper = useRef();
-  const habitsLink = useRef();
-  const dailyLink = useRef();
-  const todoLink = useRef();
-  const [selectedLink, setSelectedLink] = useState({ dom: dailyLink.current, id: "dailyLink" });
-
-  useEffect(() => {
-    setSelectedLink({ dom: dailyLink.current, id: "dailyLink" });
-  }, [dailyLink]);
-
   const activeCircle = useRef();
 
   useEffect(() => {
@@ -74,30 +64,16 @@ function Home() {
     spacerBottom.current.style.height = navbar.current.clientHeight + "px";
   }, [user, loading]);
 
-  useEffect(() => {
-    if (selectedLink.dom !== undefined) {
-      selectedLink.dom.classList.add(home.nav__item__active);
-      let offsetLeft = selectedLink.dom.offsetLeft;
-      let width = selectedLink.dom.offsetWidth / 2;
-      let circleWidth = activeCircle.current.offsetWidth / 2;
-
-      activeCircle.current.style.left = offsetLeft + width - circleWidth + "px";
-    }
-  }, [selectedLink]);
-
   useLayoutEffect(() => {
     fadeInPageTransition(content.current);
   }, [user]);
 
-  const handleLink = (e) => {
-    selectedLink.dom.classList.remove(home.nav__item__active);
+  const navigate = useNavigate();
+  const [switchState, setSwitchState] = useState(false);
 
-    setSelectedLink((prevState) => ({
-      ...prevState,
-      dom: e.target.parentNode,
-      id: e.target.value,
-    }));
-  };
+  const navSwitch = useRef();
+  const navSwitchWrapper = useRef();
+  const navbar = useRef();
 
   const navSwitchHandler = () => {
     if (!switchState) {
@@ -116,6 +92,49 @@ function Home() {
       navbar.current.classList.remove(nav.showNavbar);
     }
   };
+
+  const habitsLink = useRef();
+  const dailyLink = useRef();
+  const todoLink = useRef();
+  const habitsContainerRef = useRef();
+
+  const [selectedLink, setSelectedLink] = useState({ dom: dailyLink.current, id: "dailyLink" });
+
+  const handleLink = (e) => {
+    selectedLink.dom.classList.remove(home.nav__item__active);
+
+    setSelectedLink((prevState) => ({
+      ...prevState,
+      dom: e.target.parentNode,
+      id: e.target.value,
+    }));
+  };
+
+  useEffect(() => {
+    // move circle to active nav element
+    if (selectedLink.dom !== undefined) {
+      selectedLink.dom.classList.add(home.nav__item__active);
+      let offsetLeft = selectedLink.dom.offsetLeft;
+      let width = selectedLink.dom.offsetWidth / 2;
+      let circleWidth = activeCircle.current.offsetWidth / 2;
+
+      activeCircle.current.style.left = offsetLeft + width - circleWidth + "px";
+    }
+
+    // animate active content
+    if (selectedLink.id === "habitsLink") {
+      // fadeOutTransition(customTrackRef.current);
+      fadeInTransition(habitsContainerRef.current);
+    }
+    if (selectedLink.id === "dailyLink") {
+      fadeOutTransition(habitsContainerRef.current);
+      // fadeInTransition(customTrackRef.current);
+    }
+  }, [selectedLink]);
+
+  useEffect(() => {
+    setSelectedLink({ dom: dailyLink.current, id: "dailyLink" });
+  }, [dailyLink]);
 
   const onLogout = (url) => {
     const navigateFunc = () => {
@@ -209,11 +228,24 @@ function Home() {
               </label>
             </div>
           </div>
-          <div>
-            {habits.map((habit) => (
-              <div>{habit.habitName}</div>
-            ))}
-          </div>
+          {selectedLink.id === "habitsLink" && (
+            <div ref={habitsContainerRef} className={layout.flex__col__inner__medium}>
+              <header className={layout.flex__col__inner__small}>
+                <span className={header.header__medium}>Manage your habits</span>
+                <p className={header.subheading}>Press habit for more details.</p>
+              </header>
+              {habits.map((habit) => (
+                <Link
+                  className={btns.entry__link__btn}
+                  to="/habit-details"
+                  state={{ habit }}
+                  key={habit.id}
+                >
+                  {habit.data.habitName}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
         <div className="spacerBottom" ref={spacerBottom}></div>
       </div>
